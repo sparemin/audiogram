@@ -5,8 +5,7 @@ div.container {
 
 h1 {
   font-weight: 500;
-  margin-top: 2rem;
-  font-size: 48px;
+  font-size: 32px;
 }
 
 .red {
@@ -133,7 +132,7 @@ i.fa-play {
 label {
   display: block;
   margin-bottom: 0.25rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 select {
@@ -300,4 +299,33 @@ g.time line {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
+}
+
+#subheading {
+  font-weight: 300;
+  font-size: 18px;
+  width: 75%;
+  float: left;
+}
+
+#logo-container {
+  width: 20%;
+  float: right;
+}
+
+.section-heading {
+  font-size: 18px;
+}
+
+#footnote-container {
+  color: grey;
+  font-size: 10px;
+}
+
+#left-footnote {
+  float: left;
+}
+
+#right-footnote {
+  float: right;
 }

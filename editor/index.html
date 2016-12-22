@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Audiogram</title>
+    <title>SpareMin Audiogram</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -12,7 +12,17 @@
   </head>
   <body class="loading">
     <div class="container">
-      <h1>Audiogram</h1>
+      <div class="row" style="float:left;">
+        <div id="subheading">
+          <h1>Create a video of your recording</h1>
+          With this tool, you can create a video from a sound file (audiogram), download it, and add it to your Youtube channel, blog, or wherever you'd like.
+        </div>
+        <div id="logo-container">
+          <a href="https://www.sparemin.com" target="_blank">
+            <img id="logo" src="https://static.sparemin.com/static/email-assets/logo.png"/>
+          </a>
+        </div>
+      </div>
       <div id="loading">
         <div id="loading-bars">
           <div class="r1"></div><div class="r2"></div><div class="r3"></div><div class="r4"></div><div class="r5"></div>
@@ -21,17 +31,17 @@
       </div><!-- #loading -->
       <div id="loaded">
         <div id="error"></div>
-        <div class="row form-row" id="row-audio">
-          <label for="input-audio">Audio</label>
+        <div class="row form-row section-heading" id="row-audio">
+          <label for="input-audio">Select Audio File (mp3)</label>
           <input id="input-audio" name="audio" type="file" />
         </div>
         <div class="row form-row" id="row-theme">
-          <label for="input-theme">Theme</label>
+          <label for="input-theme">Choose a Theme</label>
           <select id="input-theme" name="theme"></select>
         </div>
         <div class="row form-row" id="row-caption">
           <label for="input-caption">
-            Caption
+            Add a Caption
             <div class="note">Add two spaces in a row to force a line break.</div>
           </label>
           <input id="input-caption" name="caption" type="text" autocomplete="off" placeholder="Add a caption" />
@@ -89,9 +99,28 @@
           <div class="clear"></div>
         </div>
       </div><!-- #loaded -->
+      <div id="footnote-container">
+        <div id="left-footnote">
+          For more information, contact <a href="mailto:support@sparemin.com">support@sparemin.com</a>
+        </div>
+        <div id="right-footnote">
+          Original audiogram code created by NY Public Radio. <a href="https://github.com/nypublicradio/audiogram/" target="_blank">View on Github</a>
+        </div>
+      </div>
+
     </div><!-- .container -->
     <script src="/js/bundle.js"></script>
     <!-- Force load custom fonts -->
     <script src="/fonts/fonts.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-70228113-10', 'auto');
+      ga('send', 'pageview');
+
+    </script>
   </body>
 </html>
