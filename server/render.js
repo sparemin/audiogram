@@ -17,7 +17,7 @@ function validate(req, res, next) {
 
   }
 
-  if (!req.file || !req.file.filename) {
+  if (!req.files['audio'][0] || !req.files['audio'][0].filename) {
     return res.status(500).send("No valid audio received.");
   }
 
@@ -36,9 +36,17 @@ function validate(req, res, next) {
 
 function route(req, res) {
 
-  var id = req.file.destination.split(path.sep).pop();
+  var id = req.files['audio'][0].destination.split(path.sep).pop();
 
-  transports.uploadAudio(path.join(req.file.destination, "audio"), "audio/" + id,function(err) {
+  if (req.files['image'] && req.files['image'][0] && req.files['image'][0].filename) {
+    transports.upload(req.files['image'][0].path, "image/" + id , function(err) {
+      if (err) {
+        throw err;
+      }
+    });
+  }
+
+  transports.uploadAudio(req.files['audio'][0].path, "audio/" + id, function(err) {
 
     if (err) {
       throw err;

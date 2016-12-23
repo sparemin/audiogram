@@ -42,9 +42,10 @@ function submitted() {
   var theme = preview.theme(),
       caption = preview.caption(),
       selection = preview.selection(),
-      file = preview.file();
+      audioFile = preview.audioFile(),
+      imageFile = preview.imageFile();
 
-  if (!file) {
+  if (!audioFile) {
     d3.select("#row-audio").classed("error", true);
     return setClass("error", "No audio file selected.");
   }
@@ -62,13 +63,17 @@ function submitted() {
 
   var formData = new FormData();
 
-  formData.append("audio", file);
+  formData.append("audio", audioFile);
   if (selection.start || selection.end) {
     formData.append("start", selection.start);
     formData.append("end", selection.end);
   }
   formData.append("theme", JSON.stringify($.extend({}, theme, { backgroundImageFile: null })));
   formData.append("caption", caption);
+
+  if (imageFile) {
+    formData.append("image", imageFile);
+  }
 
   setClass("loading");
   d3.select("#loading-message").text("Uploading audio...");
@@ -174,6 +179,8 @@ function initialize(err, themesWithImages) {
   // If there's an initial piece of audio (e.g. back button) load it
   d3.select("#input-audio").on("change", updateAudioFile).each(updateAudioFile);
 
+  d3.select("#input-image").on("change", updateImageFile);
+
   d3.select("#return").on("click", function(){
     d3.event.preventDefault();
     video.kill();
@@ -194,7 +201,7 @@ function updateAudioFile() {
   // Skip if empty
   if (!this.files || !this.files[0]) {
     d3.select("#minimap").classed("hidden", true);
-    preview.file(null);
+    preview.audioFile(null);
     setClass(null);
     return true;
   }
@@ -213,6 +220,23 @@ function updateAudioFile() {
     }
 
     d3.selectAll("#minimap, #submit").classed("hidden", !!err);
+
+  });
+
+}
+
+function updateImageFile() {
+
+  d3.select("#row-image").classed("error", false);
+
+  preview.loadImage(this.files[0], function(err){
+
+    if (err) {
+      d3.select("#row-image").classed("error", true);
+      setClass("error", "Error decoding image file");
+    } else {
+      setClass(null);
+    }
 
   });
 
