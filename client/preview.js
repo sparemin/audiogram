@@ -117,6 +117,13 @@ function loadImage(f, cb) {
 }
 
 function setBackgroundImageOverride(customImage) {
+  // if custom image field is empty, clear the override field
+  if (!customImage) {
+    backgroundImageFileOverride = undefined
+    redraw()
+    return;
+  }
+
   backgroundImageFileOverride = new Image();
   backgroundImageFileOverride.src = URL.createObjectURL(customImage)  
   backgroundImageFileOverride.onload = function(){
